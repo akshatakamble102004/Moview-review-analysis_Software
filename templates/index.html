@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Review Sentiment Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Movie Review Sentiment Analysis</h1>
+            <p>Paste a movie review and let the model predict whether it leans positive or negative.</p>
+        </div>
+
+        <form action="/predict" method="post">
+            {% with review_messages = get_flashed_messages(category_filter=['review']) %}
+                <textarea name="review" placeholder="Enter your movie review here...">{{ review_messages[0] if review_messages else '' }}</textarea>
+            {% endwith %}
+            <button type="submit">Predict Sentiment</button>
+        </form>
+
+        {% with prediction_messages = get_flashed_messages(category_filter=['prediction']) %}
+            <div class="result">{{ prediction_messages[0] if prediction_messages else '' }}</div>
+        {% endwith %}
+    </div>
+</body>
+</html>

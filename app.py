@@ -6,7 +6,7 @@ import pickle
 app = Flask(__name__)
 app.secret_key = 'replace_this_with_a_random_secret'
 # Load model and vectorizer
-model = pickle.load(open('naive_bayes.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
 @app.route('/', methods=['GET'])
